@@ -1,36 +1,56 @@
 <template>
   <div class="home">
-    <roller v-if="false" />
+    <!-- <roller v-if="false" /> -->
     <!-- <loading /> -->
     <div class="test">
-      <div class="test1" v-transfer-dom v-if="show">11</div>
+      <div class="test1" ref="pop" v-if="true">132131231213</div>
     </div>
+    <vnode ref="testp"></vnode>
     <el-button round @click="test">测试拼接</el-button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Roller from '@/components/roller.vue'
-import TransferDom from '../directives/transfer-dom'
+import vnode from '@/components/vnode.vue'
+import Vue from 'vue'
 // import Loading from '@/components/loading.vue'
 
 export default {
   name: 'Home',
-  directives: { TransferDom },
-  data() {
+  data () {
     return {
       show: false
     }
   },
   components: {
     // Loading
-    Roller
+    vnode
   },
   methods: {
     test () {
+      var z = document.createElement('p'); // is a node
+      z.innerHTML = 'test satu dua tiga';
       this.show = !this.show
+      this.popDom.node = (<div>test131231231231</div>)
+      console.log(this.$refs.pop, this.$refs.testp.$el, this.popDom.node)
+
+      document.body.appendChild(this.$refs.testp.$el)
     }
+  },
+  beforeCreate () {
+    // 定义一个新节点对象，在对象内部描述他
+    this.popDom = new Vue({
+      data: { node: '12123' },
+      // 使用render结构去描述真实dom
+      render () {
+        return '123131'
+      }
+      // 使用$mount挂载定义的popDom对象
+    }).$mount()
+  },
+  beforeDestroy () {
+    this.popDom && this.popDom.$destroy();
   },
 }
 </script>
