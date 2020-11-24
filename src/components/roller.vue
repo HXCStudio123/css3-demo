@@ -45,7 +45,8 @@ export default {
   transform-style: preserve-3d;
   // animation: test 5s linear;
   // animation-iteration-count: infinite;
-  transform: rotate3d(1, 0, 0, 18deg);
+  // transform: rotate3d(10, 20, 0, 18deg);
+  transform: rotateX(-33.5deg) rotateY(40deg);
   position: relative;
 }
 .roller li {
@@ -63,7 +64,12 @@ $len: 30;
 
 @for $i from $len through 1 {
   .li#{$i} {
-    $color: #34d19d;
+    $color: '';
+    @if $i % 2 == 0 {
+      $color: #34d19d;
+    } @else {
+      $color: #34dd;
+    }
     background-color: $color;
     backface-visibility: hidden;
     // 角度和半径

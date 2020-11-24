@@ -1,20 +1,20 @@
 <template>
   <div class="home">
-    <!-- <cube :progress="90" /> -->
-    <loading />
+    <roller />
+    <!-- <loading /> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import Cube from '@/components/cube.vue'
-import Loading from '@/components/loading.vue'
+import Roller from '@/components/roller.vue'
+// import Loading from '@/components/loading.vue'
 
 export default {
   name: 'Home',
   components: {
-    Loading
-    // Cube
+    // Loading
+    Roller
   }
 }
 </script>
